@@ -62,6 +62,33 @@ public class Hexadecimal {
     }
 
     /**
+     * Reverts the hexadecimal to decimal
+     *
+     * @param hex the hexadecimal to be reverted
+     * @return the reverted decimal number
+     */
+    public int revertToDec(String hex) {
+        if (hex.equals("0")) {
+            return 0;
+        }
+        int result = 0;
+        for (int i = 0; i < hex.length(); i++) {
+            result += findDec(hex.charAt(i));
+        }
+        return result;
+    }
+
+    /**
+     * Reverts the hexadecimal to binary
+     *
+     * @param hex the hexadecimal to be reverted
+     * @return the reverted binary number
+     */
+    public long revertToBinary(String hex) {
+        return binary.convert(revertToDec(hex));
+    }
+
+    /**
      * Finds the hex of a digit.
      *
      * @param num the single digit value to be converted
@@ -83,6 +110,25 @@ public class Hexadecimal {
                 return "F";
             default:
                 return Integer.toString(num);
+        }
+    }
+
+    private int findDec(char hex) {
+        switch (hex) {
+            case 'A':
+                return 10;
+            case 'B':
+                return 11;
+            case 'C':
+                return 12;
+            case 'D':
+                return 13;
+            case 'E':
+                return 14;
+            case 'F':
+                return 15;
+            default:
+                return Integer.parseInt(Character.toString(hex));
         }
     }
 
