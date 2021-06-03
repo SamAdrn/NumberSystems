@@ -7,7 +7,9 @@ package numberSystems;
  */
 public class Hexadecimal {
 
-    /** Used for binary conversions */
+    /**
+     * Used for binary conversions
+     */
     Binary binary = new Binary();
 
     /**
@@ -45,9 +47,7 @@ public class Hexadecimal {
         String bin = Long.toString(binary);
         StringBuilder result = new StringBuilder();
         while (!bin.equals("")) {
-            int binLength = bin.length();
-            int start = bin.length() < 4
-                    ? 0 : bin.length() - 4;
+            int start = bin.length() < 4 ? 0 : bin.length() - 4;
             String temp = bin.substring(start);
             int total = 0;
             for (int i = 0; i < temp.length(); i++) {
