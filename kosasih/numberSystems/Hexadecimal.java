@@ -71,9 +71,10 @@ public class Hexadecimal {
         if (hex.equals("0")) {
             return 0;
         }
+        hex = hex.toUpperCase();
         int result = 0;
         for (int i = 0; i < hex.length(); i++) {
-            result += findDec(hex.charAt(i));
+            result += findDec(hex.charAt(i)) * Math.pow(16, (hex.length() - 1) - i);
         }
         return result;
     }
