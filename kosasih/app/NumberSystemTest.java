@@ -25,6 +25,12 @@ public class NumberSystemTest {
         System.out.println("9 in Hexadecimal = " + hex.convert(9));
         System.out.println("985 in Hexadecimal = " + hex.convert(985));
         System.out.println("0110 0100 in Hexadecimal = " + hex.convert(binary.convert(100)));
+        System.out.println("A in Decimal = " + hex.revertToDec("A"));
+        System.out.println("5 in Decimal = " + hex.revertToDec("5"));
+        System.out.println("6D7 in Decimal = " + hex.revertToDec("6D7"));
+        System.out.println("9 in Binary = " + hex.revertToBinary("9"));
+        System.out.println("B in Binary = " + hex.revertToBinary("B"));
+        System.out.println("7AE in Binary = " + hex.revertToBinary("7AE"));
     }
 
 }
