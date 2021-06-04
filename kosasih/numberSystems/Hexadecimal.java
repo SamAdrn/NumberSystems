@@ -1,5 +1,7 @@
 package numberSystems;
 
+import java.util.HashMap;
+
 /**
  * This class performs operations related to the Binary Number System (Base 16).
  *
@@ -8,14 +10,15 @@ package numberSystems;
 public class Hexadecimal {
 
     /**
-     * Used for binary conversions
+     * Used to store every possible type of binary to hex conversion
      */
-    Binary binary = new Binary();
+    HashMap<Character, String> binaryMap = new HashMap<>();
 
     /**
-     * Default Constructor.
+     * Default Constructor. Fills binaryMap.
      */
     public Hexadecimal() {
+        createBinaryMap();
     }
 
     /**
@@ -28,7 +31,15 @@ public class Hexadecimal {
         if (num < 0) {
             return "";
         }
-        return convert(binary.convert(num));
+        if (num == 0) {
+            return "0";
+        }
+        StringBuilder result = new StringBuilder();
+        while (num != 0) {
+            result.insert(0, findBase15(num % 16));
+            num /= 16;
+        }
+        return result.toString();
     }
 
     /**
@@ -86,7 +97,15 @@ public class Hexadecimal {
      * @return the reverted binary number
      */
     public long revertToBinary(String hex) {
-        return binary.convert(revertToDec(hex));
+        if (hex.equals("0")) {
+            return 0;
+        }
+        hex = hex.toUpperCase();
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < hex.length(); i++) {
+            result.append(binaryMap.get(hex.charAt(i)));
+        }
+        return Long.parseLong(result.toString());
     }
 
     /**
@@ -114,6 +133,12 @@ public class Hexadecimal {
         }
     }
 
+    /**
+     * Finds the positive integer of a hex.
+     *
+     * @param hex the hex value to be converted
+     * @return a positive integer
+     */
     private int findDec(char hex) {
         switch (hex) {
             case 'A':
@@ -131,6 +156,28 @@ public class Hexadecimal {
             default:
                 return Integer.parseInt(Character.toString(hex));
         }
+    }
+
+    /**
+     * Fills binary map with every possible hex to binary conversion
+     */
+    private void createBinaryMap() {
+        binaryMap.put('0', "0000");
+        binaryMap.put('1', "0001");
+        binaryMap.put('2', "0010");
+        binaryMap.put('3', "0011");
+        binaryMap.put('4', "0100");
+        binaryMap.put('5', "0101");
+        binaryMap.put('6', "0110");
+        binaryMap.put('7', "0111");
+        binaryMap.put('8', "1000");
+        binaryMap.put('9', "1001");
+        binaryMap.put('A', "1010");
+        binaryMap.put('B', "1011");
+        binaryMap.put('C', "1100");
+        binaryMap.put('D', "1101");
+        binaryMap.put('E', "1110");
+        binaryMap.put('F', "1111");
     }
 
 }
