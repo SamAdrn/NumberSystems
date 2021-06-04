@@ -76,7 +76,7 @@ class HexadecimalTest {
         assertEquals(10, hex.revertToDec("A"));
         assertEquals(3021, hex.revertToDec("BCD"));
         //Lowercase
-        assertEquals(172, hex.revertToDec("ac"));
+        assertEquals(239, hex.revertToDec("ef"));
     }
 
     /**
@@ -94,6 +94,14 @@ class HexadecimalTest {
     @Test
     void revertToDecZero() {
         assertEquals(0, hex.revertToDec("0"));
+    }
+
+    /**
+     * Revert negative numbers from hexadecimal
+     */
+    @Test
+    void revertToDecNegNumber() {
+        assertEquals(-1, hex.revertToDec("-1D9"));
     }
 
     /**
@@ -115,6 +123,22 @@ class HexadecimalTest {
     void revertToBinaryNumerical() {
         assertEquals(10011000L, hex.revertToBinary("98"));
         assertEquals(110L, hex.revertToBinary("6"));
+    }
+
+    /**
+     * Revert zero from hexadecimal
+     */
+    @Test
+    void revertToBinaryZero() {
+        assertEquals(0, hex.revertToBinary("0"));
+    }
+
+    /**
+     * Revert negative numbers from hexadecimal
+     */
+    @Test
+    void revertToBinaryNegNumber() {
+        assertEquals(-1, hex.revertToBinary("-1D9"));
     }
 
 }
